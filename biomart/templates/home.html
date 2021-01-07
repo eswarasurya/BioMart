@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<ul id="demo1">
+			<li>
+				<img src="{% static 'images/organic-11.jpg' %}" alt="" style="height:100%; width: 100%; filter: brightness(70%);"/>
+				<div class="slide-desc">
+					<h3>Buy Organic Farm Fresh Vegetables Online With Us</h3>
+				</div>
+			</li>
+			<li>
+				<img src="{% static 'images/org-3.jpg' %}" alt="" style="height:100%; width: 100%; filter: brightness(70%);"/>
+				<!--Slider Description example-->
+				<div class="slide-desc">
+					<h3 style="color: white">Buy Organic Food Products Online With Us</h3>
+				</div>
+			</li>
+			<li>
+				<img src="{% static 'images/organic-6.jpeg' %}" alt=""style="height:100%; width: 100%; filter: brightness(70%);" />
+				<div class="slide-desc">
+					<h3>Buy Organic Whole Spices Online With Us</h3>
+				</div>
+			</li>
+		</ul>
+
+	<div class="newproducts-w3agile">
+		<div class="container">
+		</div>
+	</div>
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+         <a href="#"> <img class="first-slide" src="{% static 'images/p12.jpg' %}" alt="First slide"></a>
+       
+        </div>
+        <div class="item">
+         <a href="#"> <img class="second-slide " src="{% static 'images/b31.jpg' %}" alt="Second slide"></a>
+         
+        </div>
+        <div class="item">
+          <a href="#"><img class="third-slide " src="{% static 'images/b11.jpg' %}" alt="Third slide"></a>
+          
+        </div>
+      </div>
+     </div>
+
+	<div class="ban-bottom-w3l">
+					<div class="container">
+					<div class="col-md-6 ban-bottom3">
+							<div class="ban-top">
+								<img src="{% static 'images/p5.jpg' %}" class="img-responsive" alt=""/>
+								
+							</div>
+							<div class="ban-img">
+								<div class=" ban-bottom1">
+									<div class="ban-top">
+										<img src="{% static 'images/p6.jpg' %}" class="img-responsive" alt=""/>
+										
+									</div>
+								</div>
+								<div class="ban-bottom2">
+									<div class="ban-top">
+										<img src="{% static 'images/p7.jpg' %}" class="img-responsive" alt=""/>
+										
+									</div>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						<div class="col-md-6 ban-bottom">
+							<div class="ban-top">
+								<img src="{% static 'images/1111.jpg' %}" class="img-responsive" alt=""/>
+								
+								
+							</div>
+						</div>
+						
+						<div class="clearfix"></div>
+					</div>
+	</div>
+
+<script>
+		jQuery(document).ready(function(){
+			jQuery('#demo1').skdslider({'delay':4000, 'animationSpeed': 1000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
+
+		});
+</script>
+{% endblock content %}

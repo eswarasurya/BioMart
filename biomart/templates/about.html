@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="{% url 'home_view' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active">About</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!-- about -->
+<div class="about">
+    <div class="container">
+        <h3 class="w3_agile_header">About Us</h3>
+        <div class="about-agileinfo w3layouts">
+            <div class="col-md-8 about-wthree-grids grid-top">
+                <h4>BioMART - The best place to buy and sell organic products online! </h4>
+                <p class="top">At the heart of BioMART is our commitment to be a living embodiment of love and consciousness in action. We work with thousands of small family farmers in India to cultivate tens of thousands of acres of sustainable organic farmland.</p>
+                <p>All BioMART products support health and true wellness and are made with loving care. Each product is one link in a chain of connectedness between Mother Nature, our farmers and you. By choosing BioMART you are completing this chain, actively participating in our mission to create a sustainable environment of true wellness, providing training and a life of dignity to our farmers, and bringing health, happiness and true wellness to you.</p>		
+                <div class="about-w3agilerow">
+                    <div class="col-md-4 about-w3imgs">
+                        <img src="{% static 'images/p3.jpg' %}" alt="" class="img-responsive zoom-img"/>
+                    </div>
+                    <div class="col-md-4 about-w3imgs">
+                        <img src="{% static 'images/p4.jpg' %}" alt=""  class="img-responsive zoom-img"/>
+                    </div>
+                    <div class="col-md-4 about-w3imgs">
+                        <img src="{% static 'images/p3.jpg' %}" alt=""  class="img-responsive zoom-img"/>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="col-md-4 about-wthree-grids">
+                <div class="offic-time">
+                    <div class="time-top">
+                        <h4>Our Mission</h4>
+                    </div>
+                    <div class="time-bottom">
+                        <h5>Go Organic</h5>
+                        <p>To be a trustworthy and innovative global leader in providing genuine organic true wellness products and solutions for conscious, healthy living.</p>
+                    </div>
+                </div>
+                <div class="testi">
+                    <h3 class="w3_agile_header">Our Commitments</h3>
+                    <!--//End-slider-script -->
+                    <script src="{% static 'js/responsiveslides.min.js' %}"></script>
+                     <script>
+                        // You can also use "$(window).load(function() {"
+                        $(function () {
+                          // Slideshow 5
+                          $("#slider5").responsiveSlides({
+                            auto: true,
+                            pager: false,
+                            nav: true,
+                            speed: 500,
+                            namespace: "callbacks",
+                            before: function () {
+                              $('.events').append("<li>before event fired.</li>");
+                            },
+                            after: function () {
+                              $('.events').append("<li>after event fired.</li>");
+                            }
+                          });
+                    
+                        });
+                      </script>
+                    <div  id="top" class="callbacks_container">
+                        <ul class="rslides" id="slider5">
+                            <li>
+                                <div class="testi-slider">
+                                    <!-- <h4>" I AM VERY PLEASED.</h4> -->
+                                    <p>To introduce a unique and successful business model that is committed to service and integrity, and benefits all.</p>
+                                    <div class="testi-subscript">
+                                        <!-- <p><a href="#">John Doe,</a>Adipiscing</p> -->
+                                        <span class="w3-agilesub"> </span>
+                                    </div>	
+                                </div>
+                            </li>
+                            <li>
+                                <div class="testi-slider">
+                                    <!-- <h4>" I AM LOREM IPSUM.</h4> -->
+                                    <p>To support natural, sustainable, organic, agriculture practices that serve and protect Mother Nature.</p>
+                                    <div class="testi-subscript">
+                                        <!-- <p><a href="#">elit semper,</a>Dolor Elit</p> -->
+                                        <span class="w3-agilesub"> </span>
+                                    </div>	
+                                </div>
+                            </li>
+                            <li>
+                                <div class="testi-slider">
+                                    <!-- <h4>" CONSECTETUR PIMAGNA.</h4> -->
+                                    <p>To deliver genuine organic foods and products to our consumers.</p>
+                                    <div class="testi-subscript">
+                                        <!-- <p><a href="#">Amet Doe,</a>Suspendisse</p> -->
+                                        <span class="w3-agilesub"> </span>
+                                    </div>	
+                                </div>
+                            </li>
+                        </ul>	
+                    </div>
+                </div>
+            </div>	
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //about -->
+<!-- about-slid -->
+<div class="about-slid agileits-w3layouts"> 
+    <div class="container">
+        <div class="about-slid-info"> 
+            <h2>GO ORGANIC</h2>
+            <p>Join us in the process of healing the earth one step at a time.</p>
+        </div>
+    </div>
+</div>
+<!-- //about-slid -->
+<!-- about-team -->
+<div class="about-team"> 
+    <div class="container">
+        <h3 class="w3_agile_header">OUR STORES</h3>
+        <div class='container' id='map' style='width: 500px; height: 500px;'></div>
+            <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoicmFnaHVyYW0xMjMiLCJhIjoiY2tnbnh2ZW83MDc3cjJ6bW5uYWFqeTU0dCJ9.gcokX86DNr2GNnD57ZGEmw';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: [80.0268, 13.5603],
+                zoom: 15
+            });
+            map.addControl(new mapboxgl.NavigationControl());
+            </script>
+    </div>
+</div>
+<!-- //about-team -->
+
+{% endblock content %}
