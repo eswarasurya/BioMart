@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+	<div class="container">
+		<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+			<li><a href="{% url 'home_view' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+			<li class="active">Add Products</li>
+		</ol>
+	</div>
+</div>
+<!-- //breadcrumbs -->
+<!-- login -->
+<div class="register">
+	<div class="container">
+		<h2>Add a Product</h2>
+	
+		<div class="login-form-grids animated wow slideInUp" data-wow-delay=".5s">
+			<form action="{% url 'add_products' %}" method="POST">
+				{% csrf_token %}
+				{{ form | crispy }}
+				<input type="submit" value="Add Product">
+			</form>
+		</div>
+	</div>
+</div>
+
+<!-- //login -->
+
+    <!-- <h1 class="h3 mb-3 font-weight-normal w3-center">Add a Product</h1>
+    {{error}}
+    <ul>
+  {{ form.non_field_errors }}
+</ul>
+    <form action= "{% url 'add_products' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="w3-center">
+      <button type="submit" class="w3-btn w3-green w3-round">Add Product</button>
+    </div>
+    </form> -->
+
+{% endblock content %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+      <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+        <li><a href="{% url 'home_view' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+        <li class="active">Add Review Page</li>
+      </ol>
+    </div>
+  </div>
+  <!-- //breadcrumbs -->
+  <div class="login">
+    <div class="container">
+      <h2>Add a Review</h2>
+      <div class="login-form-grids">
+        <h5>rate and review a product</h5>
+        <form action="{% url 'add_review' %}" method="post">
+          {% csrf_token %}
+          {{ form|crispy }}
+          <input type="submit" value="Add Review">
+        </form>
+      </div>
+    </div>
+  </div>
+<!-- <form action="{% url 'add_review' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add" />
+</form> -->
+
+
+{% endblock content %}

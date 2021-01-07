@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+      <li><a href="{% url 'home_view' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+      <li class="active">Blog</li>
+    </ol>
+  </div>
+</div>
+<!-- //breadcrumbs -->
+<div class="products">
+  {% for x in context.articles %}
+<div class="container">
+    <div class="agileinfo_single">
+        
+        <div class="col-md-3 agileinfo_single_left">
+            <img src="{{ x.urlToImage }}" alt=" " class="img-responsive">
+            <!-- <p>{{ x.urlToImage }}</p> -->
+        </div>
+        <div class="col-md-8 agileinfo_single_right">
+        <h2><a href="{{ x.url }}" target="blanck">{{ x.title }}</a></h2>
+            <div class="rating1">
+                <p>{{ x.description }}</p>
+            </div>
+            <div class="w3agile_description">
+                <p>Published at - {{ x.publishedAt }}</p>
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+{% endfor %}
+</div>
+<!-- <div class="row">
+    {% for x in context.articles %}
+       <div class="col-lg-6 mb-4">
+             <div class="card h-100">
+               <a href="#"><img class="card-img-top" src="{{ x.urlToImage }}" alt=""></a>
+               <div class="card-body">
+                 <h4 class="card-title">
+                   <a href="{{ x.url }}">{{ x.title }}</a>
+                 </h4>
+                 <p class="card-text">{{ x.description }}</p>
+                 <p class="card-text"><small class="text-muted">Published at - {{ x.publishedAt }}</small></p>
+               </div>
+             </div>
+        </div>
+     {% endfor %}
+</div> -->
+{% endblock content %}

@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+      <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+        <li><a href="{% url 'home_view' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+        <li class="active">Reviews Page</li>
+      </ol>
+    </div>
+  </div>
+  <!-- //breadcrumbs -->
+  <!-- reviews -->
+  {% if data %}
+  <div class="products">
+      {% for review in data %}
+    <div class="container">
+        <div class="agileinfo_single">
+            
+            <div class="col-md-1 agileinfo_single_left">
+                <p>{{ forloop.counter }}</p>
+            </div>
+            <div class="col-md-8 agileinfo_single_right">
+            <h2>{{ review.product.product_name }}</h2>
+                <div class="rating1">
+                    <p>Rated {{ review.stars }} stars of 5 by {{ review.reviewby }}</p>
+                </div>
+                <div class="w3agile_description">
+                    <h4>REVIEW: </h4>
+                    <p>{{ review.review }}</p>
+                </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>No reviews are available.</p>
+    {% endif %}
+    <div class="container">
+        <h4>Want to add a review?</h4>
+            <p><a href="{% url 'add_review' %}">Add Review<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+    </div>
+</div>
+
+
+  <!-- //reviews -->
+<!-- <h2>Reviews</h2>
+
+{% if data %}
+<div>
+    {% for review in data %}
+    <div>
+        <h4><a href="#">
+        {{ review.product.product_name }}
+        </a></h4>
+        <h6>rated {{ review.stars }} of 5 by {{ review.reviewby }}</h6>
+        <p>{{ review.review }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p>No reviews are available.</p>
+{% endif %} -->
+
+{% endblock content %}

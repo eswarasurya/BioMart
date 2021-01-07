@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- {% for x in products %}
+    {{x.product_name}}
+    {{x.mrp}}
+    {{x.discount}}
+    {{x.price}}
+    {{x.discription}}
+    {{x.seller.username}}
+    <br>
+    <a href="{% url 'add_to_cart'  productid=x.productid  %}">Add to cart</a>
+{% endfor %} -->
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+            <li><a href="{% url 'home_view' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active">All Products</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+{% for message in messages %}
+<!-- <script>
+    alert('{{ message }}');
+</script> -->
+<div class="alert alert-{{ message.tags }}">
+    {{ message }}
+</div>
+{% endfor %}
+<!--- pakagedfoods --->
+<div class="products">
+    <div class="container">
+        <div class="col-md-12 products-right">
+            <div class="products-right-grid">
+                <div class="products-right-grids">
+                    <div class="sorting">
+                        <select id="country" onchange="change_country(this.value)" class="frm-field required sect">
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Default sorting</option>
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by popularity</option> 
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by average rating</option>					
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sort by price</option>								
+                        </select>
+                    </div>
+                    <div class="sorting-left">
+                        <select id="country1" onchange="change_country(this.value)" class="frm-field required sect">
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Item on page 1</option>
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Item on page 2</option> 
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>Item on page 3</option>					
+                            <option value="null"><i class="fa fa-arrow-right" aria-hidden="true"></i>All</option>								
+                        </select>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            </div>
+            <div class="agile_top_brands_grids">
+                {% for x in products %}
+                <div class="col-md-4 top_brand_left">
+                    <div class="hover14 column">
+                        <div class="agile_top_brand_left_grid">
+                            <!-- <div class="agile_top_brand_left_grid_pos">
+                                <img src="{% static 'images/offer.png' %}" alt=" " class="img-responsive">
+                            </div> -->
+                            <div class="agile_top_brand_left_grid1">
+                                <figure>
+                                    <div class="snipcart-item block">
+                                        <div class="snipcart-thumb">
+                                            <a href="#"><img title=" " alt=" " src="{% static 'images/pf9.png' %}"></a>		
+                                            <h4>{{ x.product_name }}</h4>
+                                            <h4>₹{{ x.price }} <span>₹{{ x.mrp }}</span></h4>
+                                            <p>{{ x.description }}</p>
+                                            <p>Sold by: {{x.sold_by.username}}</p>
+                                        </div>
+                                        <div class="snipcart-details top_brand_home_details">
+                                            
+                                                <fieldset>
+                                                    <a href="{% url 'add_to_cart'  productid=x.productid  %}"><input type="submit" name="submit" value="Add to cart" class="button"> </a>
+                                                    <!-- <input type="submit" name="submit" value="Add to cart" class="button"> -->
+                                                </fieldset>
+                                            
+                                        </div>
+                                    </div>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                    <div class="clearfix"> </div>
+            </div>
+            <nav class="numbering">
+                <ul class="pagination paging">
+                    <li>
+                        <a href="#" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li>
+                        <a href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!-- {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+    {% endfor %}
+</ul>
+{% endif %} -->
+<!--- pakagedfoods --->
+
+<!-- <h1 class="h3 mb-3 font-weight-normal w3-center">All Products</h1> -->
+
+<!-- {% for x in products %}
+    {{x.product_name}}
+    {{x.mrp}}
+    {{x.discount}}
+    {{x.price}}
+    {{x.discription}}
+    {{x.seller.username}}
+    <br>
+    <a href="{% url 'add_to_cart'  productid=x.productid  %}">Add to cart</a>
+{% endfor %} -->
+<style>
+    .alert {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0px);
+    transition: visibility 0s, opacity 250ms, transform 250ms;
+}
+.alert.hide {
+    position: relative;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: visibility 0s 250ms, opacity 250ms, transform 250ms;
+}
+</style>
+<script>
+    var m = document.getElementsByClassName("alert");  // Return an array
+    
+    setTimeout(function(){
+       if (m && m.length) {
+           m[0].classList.add('hide');
+       }
+    }, 3000);
+    </script>
+
+{% endblock content %}

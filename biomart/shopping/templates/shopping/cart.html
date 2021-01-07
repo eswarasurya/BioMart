@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+    <div class="container">
+        <ol class="breadcrumb breadcrumb1">
+            <li><a href="{% url 'home_view' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+            <li class="active">Cart</li>
+        </ol>
+    </div>
+</div>
+<!-- //breadcrumbs -->
+<!-- checkout -->
+<div class="checkout">
+    <div class="container">
+        <h2>Your shopping cart contains: <span>{{ count }} Products</span></h2>
+        <div class="checkout-right">
+            <table class="timetable_sub">
+                <thead>
+                    <tr>
+                        <th>SL No.</th>	
+                        <th>Product Name</th>
+                        <th>Quantity(Kg/Dozen/items)</th>
+                        <th>Product Origin</th>
+                    
+                        <th>Price</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                {% for x in data %}
+                <tr class="rem1">
+                    <td class="invert">{{ forloop.counter }}</td>
+                    <td class="invert">{{ x.0.product_name }}</td>
+                    <td class="invert">
+                         <div class="quantity"> 
+                            <div class="quantity-select"> 
+                                <div class="value-minus"><a class="decreament_count_cart" id="decreament_count_cart{{x.0.productid}}" href="#" data-catid="{{x.0.productid}}"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span></a></div>
+                                <div class="entry value"><span>{{x.1}}</span></div>
+                                <div class="value-plus"><a class="increament_count_cart" id="increament_count_cart{{x.0.productid}}" href="#" data-catid="{{x.0.productid}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span></a></div>
+                            </div>
+                        </div>
+                    </td>
+                    {% if not x.0.origin %}
+                    <td class="invert">-</td>
+                    {% else %}
+                    <td class="invert">{{ x.0.origin }}</td>
+                    {% endif %}
+                    
+                    <td class="invert">₹{{ x.0.price }}</td>
+                    <td class="invert">
+                        <div class="rem">
+                            <div><a href="{% url 'remove_from_cart'  productid=x.0.productid  %}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a></div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+                <script type="text/javascript">
+                    $('.increament_count_cart').click(function(e){
+                    e.preventDefault();
+                    $.ajax(
+                    {
+                        type:"GET",
+                        url: "/increament_count_cart/" + $(this).attr("data-catid"),
+                        
+                        success: function(resp) 
+                        {   
+                            $('#total_amount').html(resp.html);
+                        }
+                    })
+                });
+
+                $('.decreament_count_cart').click(function(e){
+                    e.preventDefault();
+                    $.ajax(
+                    {
+                        type:"GET",
+                        url: "/decreament_count_cart/" + $(this).attr("data-catid"),
+                        
+                        success: function( resp ) 
+                        {   
+                            $('#total_amount').html(resp.html);
+                        }
+                    })
+                });
+                </script>
+                <script>
+                    $('.value-plus').on('click', function(){
+                        var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
+                        divUpd.text(newVal);
+                    });
+
+                    $('.value-minus').on('click', function(){
+                        var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
+                        if(newVal>=1) divUpd.text(newVal);
+                    });
+                    </script>
+            </table>
+        </div>
+        <div class="checkout-left">	
+            <div class="checkout-left-basket">
+                <h4><a href="{% url 'checkout' %}"> Proceed to Checkout/ Buy: </a></h4>
+                <ul>
+                    {% for x in data %}
+                    <li>{{ x.0.product_name }} ({{ x.0.quantity }}) <i>-</i> <span>₹{{ x.0.price }} </span></li>
+                    {% endfor %}
+                    <li>Delivery and Service Charges <i>-</i> <span>Free</span></li>
+                    <li>Total Amount<i>-</i> <span id='total_amount'>{{total}}</span></li>
+                </ul>
+            </div>
+            <div class="checkout-right-basket">
+                <a href="{% url 'all_products' %}"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Continue Shopping</a>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+</div>
+<!-- //checkout -->
+
+<!-- <h1>This is the cart</h1>
+
+{% for x in data %}
+{{x.0.product_name}}
+<br>
+{{x.0.discription}}
+<br>
+Quantity: {{x.1}}
+<br>
+<a href="{% url 'increament_count_cart'  productid=x.0.productid  %}">Increament Count</a>
+<a href="{% url 'decreament_count_cart'  productid=x.0.productid  %}">Decreament Count</a>
+<a href="{% url 'remove_from_cart'  productid=x.0.productid  %}">Remove</a>
+<br>
+<br>
+<br>
+{% endfor %}
+<br>
+<br>
+Total Amount = {{total}}
+<a href="{% url 'checkout' %}"> Proceed to checkout: </a> -->
+
+{% endblock content %}
