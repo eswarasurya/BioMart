@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+	<div class="container">
+		<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+			<li><a href="{% url 'home_view' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+			<li class="active">{{user}}'s Profile</li>
+		</ol>
+	</div>
+</div>
+<!-- //breadcrumbs -->
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+      <h3 class="text-on-pannel text-primary"><strong class="text-uppercase"> Products added by you </strong></h3>
+		<br>		
+	  <table border="1" class="center" id="results" style="width :80%; margin-left:10%;">
+    <tbody style="text-align:center;">
+      <tr style="font-weight:bold;text-align:center;">
+        <th style="width:10%; text-align:center;">SL No.</th>
+        <th style="width:20%; text-align:center;">Product Name</th>
+        <th style="width:10%; text-align:center;">Quantity(Kg/Dozen)</th>
+				<th style="width:15%; text-align:center;">Product Origin</th>
+        <th style="width:10%; text-align:center;">Price</th>
+      </tr>
+			{% for x in sell_items %}
+			<tr>
+				<td>{{ forloop.counter }}</td>
+				<td>{{x.product_name}}</td>
+				<td>{{ x.quantity }}</td>
+        {% if x.origin %}
+				    <td>{{ x.origin }}</td>
+        {% else %}
+            <td>  --  </td>
+        {% endif %}
+				<td>{{x.price}}</td>
+			</tr>
+			{% endfor %}
+    </tbody>
+    </table>
+    </div>
+  </div>
+	<div class="panel panel-primary">
+	    <div class="panel-body">
+	      <h3 class="text-on-pannel text-primary"><strong class="text-uppercase"> products sold </strong></h3>
+			<br>	<table border="1" class="center" id="results" style="width :80%; margin-left:10%;">
+	    <tbody style="text-align:center;">
+	      <tr style="font-weight:bold;text-align:center;">
+	        <th style="width:10%; text-align:center;">SL No.</th>
+	        <th style="width:20%; text-align:center;">Product Name</th>
+	        <th style="width:10%; text-align:center;">Quantity</th>
+	        <th style="width:10%; text-align:center;">Price</th>
+					<th style="width:15%; text-align:center;">Date</th>
+	      </tr>
+				{% for x in sold_items %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{x.0.product_name}}</td>
+					<td>{{ x.1 }}</td>
+					<td>{{x.0.price}}</td>
+					<td>{{x.2}}</td>
+				</tr>
+				{% endfor %}
+	    </tbody>
+	    </table>
+	    </div>
+	  </div>
+		<div class="panel panel-primary">
+		    <div class="panel-body">
+		      <h3 class="text-on-pannel text-primary"><strong class="text-uppercase"> Products you Purchased </strong></h3>
+				<br>	<table border="1" class="center" id="results" style="width :80%; margin-left:10%;">
+		    <tbody style="text-align:center;">
+		      <tr style="font-weight:bold;text-align:center;">
+		        <th style="width:10%; text-align:center;">SL No.</th>
+		        <th style="width:20%; text-align:center;">Product Name</th>
+		        <th style="width:10%; text-align:center;">Quantity</th>
+						<th style="width:10%; text-align:center;">Price</th>
+		        <th style="width:15%; text-align:center;">Date</th>
+		      </tr>
+					{% for x in brought_items %}
+					<tr>
+						<td>{{ forloop.counter }}</td>
+						<td>{{x.0.product_name}}</td>
+						<td>{{ x.1 }}</td>
+						<td>{{x.0.price}}</td>
+						<td>{{x.2}}</td>
+					</tr>
+					{% endfor %}
+		    </tbody>
+		    </table>
+			</div>
+		  </div>
+		  <div class="container">
+			<h4>Want to add a product?</h4>
+				<p><a href="{% url 'add_products' %}">Add a Product<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+		</div>
+<style>
+.text-on-pannel {
+background: #fff none repeat scroll 0 0;
+height: auto;
+margin-left: 80px;
+width: 17%;
+padding: 6px 10px;
+position: absolute;
+margin-top: -50px;
+border: 1px solid;
+text-align: center;
+color: #30b847;
+}
+
+.panel {
+/* for text on pannel  #f2f2f2; */
+border-color: black;
+margin-top: 27px;
+margin-left: 5%;
+margin-right: 5%;
+
+}
+
+.panel-body {
+padding-top: 30px;
+
+}
+.head{
+	color:#30b847;
+	margin-top: 2%;
+	margin-left: 5%;
+	font-size: 30px;
+}
+		#results {
+			font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		#results td, #results th {
+			border: 1px solid #ddd;
+			padding: 4px;
+		}
+
+		#results tr:nth-child(even){background-color: #f2f2f2;}
+
+		#results tr:hover {background-color: #ddd;}
+
+		#results th {
+			padding-top: 8px;
+			padding-bottom: 8px;
+			text-align: left;
+			background-color: #30b847;
+			color: white;
+		}
+</style>
+
+<!-- <br><br>
+
+Items Listed to sell<br>
+{% for x in sell_items %}
+
+Product Name: {{x.product_name}}<br>
+Price: {{x.price}}<br>
+discription: {{x.description}}<br>
+
+{% endfor %}
+<br><br><br>
+
+Items Sold<br>
+{% for x in sold_items %}
+
+Product Name: {{x.0.product_name}}<br>
+Quantity: {{x.1}}<br>
+Date: {{x.2}}<br>
+
+{% endfor %}
+<br><br><br>
+Items You Purchased<br>
+{% for x in brought_items %}
+
+Product Name: {{x.0.product_name}}<br>
+Quantity: {{x.1}}<br>
+Date: {{x.2}}<br>
+
+{% endfor %} -->
+
+{% endblock content %}

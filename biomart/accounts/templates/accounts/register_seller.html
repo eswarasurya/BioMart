@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- breadcrumbs -->
+<div class="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
+      <li><a href="{% url 'home_view' %}"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
+      <li class="active">Register as Seller Page</li>
+    </ol>
+  </div>
+</div>
+<!-- //breadcrumbs -->
+<!-- register -->
+<div class="login">
+  <div class="container">
+    <h2>Seller Registration</h2>
+    <div class="login-form-grids">
+      <h5>profile information</h5>
+      <form action="{% url 'register_seller' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Register">
+      </form>
+    </div>
+      <h4>Want to register as a Customer?</h4>
+        <p><a href="{% url 'register_buyer' %}">Register as Customer<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+        <h4>Already have an account?</h4>
+        <p><a href="{% url 'login' %}">Log In<span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span></a></p>
+  </div>
+</div>
+
+    <!-- <h1>Registeration as a Seller</h1>
+    <ul>
+      {{ form.non_field_errors }}
+    </ul>
+    <form action= "{% url 'register_seller' %}" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+    <div class="w3-center">
+      <button type="submit" class="w3-btn w3-green w3-round">Register</button>
+    </div>
+    <div class="w3-center">
+      Already have an account?
+      <a href="{% url 'login' %}">Log In</a>
+    </div>
+    <div class="w3-center">
+      Do you want to register as a customer?
+      <a href="{% url 'register_buyer' %}">Customer Registration</a>
+    </div>
+    </form> -->
+
+{% endblock content %}
