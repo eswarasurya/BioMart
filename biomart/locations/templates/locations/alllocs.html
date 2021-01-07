@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!doctype html>
+  {% load static %}
+  <html lang="en">
+  <style>
+
+.text-gray {
+    color: #999;
+}
+
+
+header
+{
+    overflow-x : hidden;
+ 
+}
+
+.form-control:focus {
+  box-shadow: none;
+}
+
+.form-control-underlined {
+  border-width: 0;
+  border-bottom-width: 1px;
+  border-radius: 0;
+  padding-left: 0;
+}
+body {
+ 
+  min-height: 100vh;
+}
+
+.form-control::placeholder {
+  font-size: 0.95rem;
+  color: #aaa;
+  font-style: italic;
+}
+  
+  .navbar {
+      transition: all 0.4s;
+  }
+  
+  .navbar .nav-link {
+      color: #fff;
+  }
+  
+  .navbar .nav-link:hover,
+  .navbar .nav-link:focus {
+      color: #fff;
+      text-decoration: none;
+  }
+  
+  .navbar .navbar-brand {
+      color: #fff;
+  }
+  
+  
+  
+  .navbar.active {
+      background: rgb(224, 22, 22);
+      box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar.active .nav-link {
+      color: #555;
+  }
+  
+  .navbar.active .nav-link:hover,
+  .navbar.active .nav-link:focus {
+      color: #555;
+      text-decoration: none;
+  }
+  
+  .navbar.active .navbar-brand {
+      color: #555;
+  }
+  
+  
+  
+  @media (max-width: 991.98px) {
+      .navbar {
+          background: rgb(255, 255, 255);
+      }
+  
+      .navbar .navbar-brand, .navbar .nav-link {
+          color: #555;
+      }
+  }
+  
+  
+  .text-small {
+      font-size: 0.9rem !important;
+  }
+  
+  
+  
+  
+  #button-addon1 {
+    color: #ffffff;
+  }
+  
+  i {
+    color: #4c4d4c;
+  }
+  
+ 
+  html { font-size: 0.5rem; }
+  
+  @media (min-width: 576px) {
+      html { font-size: 0.75rem; }
+  }
+  @media (min-width: 768px) {
+      html { font-size: 1rem; }
+  }
+  @media (min-width: 992px) {
+      html { font-size: 1.10rem; }
+  }
+  @media (min-width: 1200px) {
+      html { font-size: 1.10rem; }
+  }
+ 
+  
+  
+          </style>
+      <title>BioMart</title>
+    </head>
+    <body>
+			      
+        <div class="container py-5">
+				<br>
+				<br>
+                <div class="row text-center text-white mb-5">
+                    <div class="col-lg-12 mx-auto">
+                        <h1 class="display-4">All Store Locations</h1>
+                        
+                        </div>
+                    </div>
+                </div>
+
+                   
+                        <div class="col-lg-3" style="float:right">
+                          
+                          <div class="bg-white rounded">    
+       </div>
+                        </div>
+       
+    <br>
+    <br>
+    <br>
+   <div class="container py-2" style="text-align: center;">
+    
+	{% for abc in all_locs  %}
+		
+	<div class="row">
+			<div class="col-lg-8 mx-auto ">
+			
+					<div class="timeline-item bg-white rounded ml-3 p-4 shadow " style="background-color: rgb(177, 245, 177);">
+            
+                        <h2 class="display-5">{{ abc.area }}</h2>
+                        <p  class="lead mb-0" style="text-align: right;"><b><i>State:</b>{{ abc.state }}<b><br>By: </b>{{ abc.owner }}</i></p>
+                        <br>
+                      
+                        <p class="text-small mt-2 font-weight-light">Buliding No. : {{ abc.bno }}</p>                   
+                    
+                  </div>
+					
+			
+
+			</div>
+		</div>
+		<br>
+										<br>
+										
+		{% endfor %}
+		<br>
+<br>
+<div class="container">
+
+<a href="{% url 'create' %}" style="color:darkblue" >Click here</a>
+to add a location
+<br>
+<a href="{% url 'myblogs' %}" style="color:darkblue">Click here</a>
+to view your locations
+</div>
+<br>
+        </div>
+   
+     
+      </body>
+    </html>
+    {% endblock content %}
